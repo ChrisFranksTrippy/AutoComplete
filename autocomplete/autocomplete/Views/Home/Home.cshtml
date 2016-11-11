@@ -52,7 +52,7 @@
 
         //Set old button filter to null
         $.ajax({
-            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(inputTag).attr('id') + "&value=null" 
+            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(inputTag).attr('id') + "&value=" 
         });
 
         //Replace text
@@ -64,6 +64,10 @@
         removeUntil($(selectedLi).parents('.filter:last').attr('id'));
         //Check Place Holder text
         changePlaceHolder(inputTag);
+        //Clear input val
+        $(inputTag).val("");
+        //Update auto complete
+        autoComplete(inputTag);
     }
 
     function changePlaceHolder(input) {
@@ -84,6 +88,10 @@
                 //Update session var with new value
                 $.ajax({
                     url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(this).attr('id') + "&value=" + $(this).val()
+                });
+                //Force fresh search in auto complete 
+                $.ajax({
+                    url: "@Url.Action("setSessionVar", "Home")" + "?key=lastFilter&value=" 
                 });
                 removeUntil($(this).parents('.filter').attr('id'));
             }
@@ -136,7 +144,7 @@
 function removeFilter() {
     if ($('.filter-container').children().length > 1) {
         $.ajax({
-            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value=null"
+            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value="
         });
     $('.filter:last').remove();
 }
@@ -166,6 +174,11 @@ function resetFilter() {
 }
 
 function autoComplete(input) {
+
+    if ($(input).autocomplete("instance") == '[object Object]') {
+        $(input).autocomplete("destroy");
+    }
+
 
     var sourceStr = "@Url.Action("autoComplete", "Home")" + "?filter=" + input.attr('id');
 

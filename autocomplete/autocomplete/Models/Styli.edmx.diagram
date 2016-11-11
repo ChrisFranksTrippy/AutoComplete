@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c1fcbcb612e9428aacf3b61dda16b80d" Name="Diagram1">
+      <Diagram DiagramId="7653d7d7c5ee4b3ba80af4ff8c354e72" Name="Diagram1">
         <EntityTypeShape EntityType="ChrisTempDBModel.StyliList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
