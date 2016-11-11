@@ -7,8 +7,9 @@
     $(function () {
         //Add Auto Complete to first text box once DOM has loaded
         autoComplete($('.filter .input input'));
+        //Add value listener
+        addInputValListener($('.filter .input input'));
         
-
 
         $('.button').bind('click', function () {
             $(this).toggleClass('no-bottom-radius');
@@ -41,10 +42,18 @@
 
     })
 
+    /*Change Listeners*/
+
     function changeButtonText(selectedLi) {
+
         var anchorTag = selectedLi.parent().siblings('a');
         var inputTag = selectedLi.parents('.button').siblings('.input').children('input');
         var prevAText = anchorTag.text();
+
+        //Set old button filter to null
+        $.ajax({
+            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(inputTag).attr('id') + "&value=null" 
+        });
 
         //Replace text
         anchorTag.text(selectedLi.text());
@@ -64,24 +73,31 @@
             $(input).attr('placeholder', "Enter a Value");
     }
 
-    function valueChanged(input) {
-        if ($(input).attr('id') != $('filter:last .input input').attr('id')) {
-            removeUntil($(input).parents('.filter').attr('id'));
-        }
+    function addInputValListener(input) {
+        $(input).focusin(function () {
+            sessionStorage.setItem($(this).attr('id'), $(this).val());
+        });
+
+        $(input).focusout(function () {
+            var inputVal = sessionStorage.getItem($(this).attr('id'));
+            if ($(this).val() != inputVal) {
+                //Update session var with new value
+                $.ajax({
+                    url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(this).attr('id') + "&value=" + $(this).val()
+                });
+                removeUntil($(this).parents('.filter').attr('id'));
+            }
+        });
     }
 
-
-
-
-
-
+    /*Button Functions*/
 
     function addFilter() {
         if ($('.filter-container').children().length < 11) {
-
-            $.ajax({
+            //Unneeded as focus out stores ses var
+            @*$.ajax({
                 url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value=" + $('.filter:last .input input').val()
-            });
+            });*@
 
 
         var newFilter = $('.filter:last').clone(true);
@@ -112,6 +128,8 @@
 
         autoComplete($(lastInput));
 
+        addInputValListener($('.filter:last .input input'));
+
     }
 }
 
@@ -137,6 +155,14 @@ function resetFilter() {
     while ($('.filter-container').children().length > 1) {
         $('.filter:last').remove();
     }
+
+    //Clear text box
+    $('.filter .input input').val("");
+    //Set effective length as displayed val
+    if ($('.filter .button a').text() != 'Effective Length') {
+        changeButtonText((this).siblings('ul').children('li:contains("Effective Length")'));
+    }
+
 }
 
 function autoComplete(input) {

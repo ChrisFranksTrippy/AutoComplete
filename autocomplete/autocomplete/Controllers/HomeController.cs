@@ -38,7 +38,7 @@ namespace autocomplete.Controllers
 
         public void setSessionVar(String key, String value)
         {
-            if (value == "null" || value == "")
+            if (String.IsNullOrWhiteSpace(value))
                 Session[key] = null;
             else
                 Session[key] = value;
@@ -204,19 +204,17 @@ namespace autocomplete.Controllers
             Session["lastFilter"] = filter;           
 
 
-            if (term == "" || term == " ")
+            if (String.IsNullOrWhiteSpace(term))
                 return Json(distinctResults, JsonRequestBehavior.AllowGet);
 
             
 
             for (int i = 0; i < distinctResults.Count; i++)
             {
+                //Ignore Case (term, true, null)
                 if (distinctResults.ElementAt(i).StartsWith(term, true, null))
                     searchResults.Add(distinctResults.ElementAt(i));
             }
-
-
-
             return Json(searchResults, JsonRequestBehavior.AllowGet);
         }
     }
