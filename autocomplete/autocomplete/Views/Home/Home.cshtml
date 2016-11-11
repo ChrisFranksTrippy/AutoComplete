@@ -9,7 +9,7 @@
         autoComplete($('.filter .input input'));
         //Add value listener
         addInputValListener($('.filter .input input'));
-        
+
 
         $('.button').bind('click', function () {
             $(this).toggleClass('no-bottom-radius');
@@ -52,7 +52,7 @@
 
         //Set old button filter to null
         $.ajax({
-            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(inputTag).attr('id') + "&value=" 
+            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $(inputTag).attr('id') + "&value="
         });
 
         //Replace text
@@ -91,7 +91,7 @@
                 });
                 //Force fresh search in auto complete 
                 $.ajax({
-                    url: "@Url.Action("setSessionVar", "Home")" + "?key=lastFilter&value=" 
+                    url: "@Url.Action("setSessionVar", "Home")" + "?key=lastFilter&value="
                 });
                 removeUntil($(this).parents('.filter').attr('id'));
             }
@@ -102,49 +102,43 @@
 
     function addFilter() {
         if ($('.filter-container').children().length < 11) {
-            //Unneeded as focus out stores ses var
-            @*$.ajax({
-                url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value=" + $('.filter:last .input input').val()
-            });*@
-
-
-        var newFilter = $('.filter:last').clone(true);
-        $('.filter-container').append(newFilter);
+            var newFilter = $('.filter:last').clone(true);
+            $('.filter-container').append(newFilter);
             //Store first li text
-        var buttonText = $('.filter:last li:first').text();
+            var buttonText = $('.filter:last li:first').text();
             //Remove top li
-        $('.filter:last li:first').remove();
+            $('.filter:last li:first').remove();
             //Change anchorTag text 
-        $('.filter:last .button a').text(buttonText);
+            $('.filter:last .button a').text(buttonText);
 
             //FIX auto complete error Woo!
 
             //Remove CLONED 
-        $('.filter:last .input input').remove();
+            $('.filter:last .input input').remove();
             //Create new input element 
-        var input = document.createElement('input');
+            var input = document.createElement('input');
             //Append new input to create memory space for the input 
-        $('.filter:last .input').append(input);
+            $('.filter:last .input').append(input);
 
-        var lastInput = $('.filter:last .input input')
+            var lastInput = $('.filter:last .input input')
             //Change input Id
-        $(lastInput).attr('id', buttonText.trim().replace(" ", ""));
+            $(lastInput).attr('id', buttonText.trim().replace(" ", ""));
             //Add placeholder       
-        changePlaceHolder(lastInput);
+            changePlaceHolder(lastInput);
             //Change filter id
-        $('.filter:last').attr('id', 'filter' + $('.filter-container').children().length);
+            $('.filter:last').attr('id', 'filter' + $('.filter-container').children().length);
 
-        autoComplete($(lastInput));
+            autoComplete($(lastInput));
 
-        addInputValListener($('.filter:last .input input'));
+            addInputValListener($('.filter:last .input input'));
 
+        }
     }
-}
 
-function removeFilter() {
-    if ($('.filter-container').children().length > 1) {
-        $.ajax({
-            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value="
+    function removeFilter() {
+        if ($('.filter-container').children().length > 1) {
+            $.ajax({
+                url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value="
         });
     $('.filter:last').remove();
 }
@@ -182,26 +176,21 @@ function autoComplete(input) {
 
     var sourceStr = "@Url.Action("autoComplete", "Home")" + "?filter=" + input.attr('id');
 
-        $(input).autocomplete({
-            source: sourceStr,
-            open: function (event, ui) {
-                $(this).addClass('no-bottom-radius');
-            },
-            close: function (event, ui) {
-                $(this).removeClass('no-bottom-radius');
-            }
-        });
-
-        if (input.attr('id') == 'PartNo') {
-            $(input).autocomplete("option", "minLength", 7);
+    $(input).autocomplete({
+        source: sourceStr,
+        open: function (event, ui) {
+            $(this).addClass('no-bottom-radius');
+        },
+        close: function (event, ui) {
+            $(this).removeClass('no-bottom-radius');
         }
+    });
+
+    if (input.attr('id') == 'PartNo') {
+        $(input).autocomplete("option", "minLength", 7);
     }
-
-    //setInterval(function () { location.reload(); }, 1000);
-
-
-
-
+}
+    
 </script>
 
 <div class="container">
@@ -248,38 +237,3 @@ function autoComplete(input) {
         </div>
     </div>
 </div>
-
-
-@*
-
-        <div class="filter">
-            <div class="button">
-                <a>Part No</a>
-                <img src="~/Img/Icon/down.svg" />
-                <ul>
-                    <li>Fld RndSur</li>
-                    <li>Instrument Type</li>
-                    <li>Part No</li>
-                    <li>Shank Clearance</li>
-                    <li>Shank Length</li>
-                    <li>Stylus Type</li>
-                    <li>Tip Angle</li>
-                    <li>Tip Material</li>
-                    <li>Tip Size</li>
-                    <li>Tip Type</li>
-                </ul>
-            </div>
-            <div class="input">
-                <input placeholder="Enter a Value" />
-                <ul>
-                    <li>Item</li>
-                    <li>Item</li>
-                    <li>Item</li>
-                    <li>Item</li>
-                    <li>Item</li>
-                    <li>Item</li>
-                </ul>
-            </div>
-        </div>
-
-*@

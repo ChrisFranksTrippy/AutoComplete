@@ -79,7 +79,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).EffectiveLength))
                                 distinctResults.Add(resultList.ElementAt(i).EffectiveLength);
-
                         }
                         break;
 
@@ -88,7 +87,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).FldRndSur))
                                 distinctResults.Add(resultList.ElementAt(i).FldRndSur);
-
                         }
                         break;
 
@@ -97,7 +95,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).InstrumentType))
                                 distinctResults.Add(resultList.ElementAt(i).InstrumentType);
-
                         }
                         break;
 
@@ -106,7 +103,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).PartNo))
                                 distinctResults.Add(resultList.ElementAt(i).PartNo);
-
                         }
                         break;
 
@@ -115,7 +111,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).ShankClearance))
                                 distinctResults.Add(resultList.ElementAt(i).ShankClearance);
-
                         }
                         break;
 
@@ -124,7 +119,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).ShankLength))
                                 distinctResults.Add(resultList.ElementAt(i).ShankLength);
-
                         }
                         break;
 
@@ -133,7 +127,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).StylusType))
                                 distinctResults.Add(resultList.ElementAt(i).StylusType);
-
                         }
                         break;
 
@@ -142,7 +135,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).TipAngle))
                                 distinctResults.Add(resultList.ElementAt(i).TipAngle);
-
                         }
                         break;
 
@@ -151,7 +143,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).TipMaterial))
                                 distinctResults.Add(resultList.ElementAt(i).TipMaterial);
-
                         }
                         break;
 
@@ -160,7 +151,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).TipSize))
                                 distinctResults.Add(resultList.ElementAt(i).TipSize);
-
                         }
                         break;
 
@@ -169,7 +159,6 @@ namespace autocomplete.Controllers
                         {
                             if (!distinctResults.Contains(resultList.ElementAt(i).TipType))
                                 distinctResults.Add(resultList.ElementAt(i).TipType);
-
                         }
                         break;
                     default:
@@ -204,13 +193,10 @@ namespace autocomplete.Controllers
 
             //Search
             Session["lastFilter"] = filter;           
-
-
+            
             if (String.IsNullOrWhiteSpace(term))
                 return Json(distinctResults, JsonRequestBehavior.AllowGet);
-
-            
-
+                      
             for (int i = 0; i < distinctResults.Count; i++)
             {
                 //Ignore Case (term, true, null)
