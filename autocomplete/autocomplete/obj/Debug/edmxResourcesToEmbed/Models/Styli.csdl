@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChrisTempDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="StyliConnection" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="StyliLists" EntityType="ChrisTempDBModel.StyliList" />
+    <FunctionImport Name="spStyliSearch" ReturnType="Collection(ChrisTempDBModel.spStyliSearch_Result)">
+      <Parameter Name="EffectiveLength" Mode="In" Type="String" />
+      <Parameter Name="FldRndSur" Mode="In" Type="String" />
+      <Parameter Name="InstrumentType" Mode="In" Type="String" />
+      <Parameter Name="PartNo" Mode="In" Type="String" />
+      <Parameter Name="ShankClearance" Mode="In" Type="String" />
+      <Parameter Name="ShankLength" Mode="In" Type="String" />
+      <Parameter Name="StylusType" Mode="In" Type="String" />
+      <Parameter Name="TipAngle" Mode="In" Type="String" />
+      <Parameter Name="TipMaterial" Mode="In" Type="String" />
+      <Parameter Name="TipSize" Mode="In" Type="String" />
+      <Parameter Name="TipType" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="StyliList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PartNo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="TipType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="TipSize" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="TipAngle" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="TipMaterial" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="StylusType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ShankClearance" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="EffectiveLength" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Delivery" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Image" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="InstrumentType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ShankLength" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="DataType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="DisplayPrice" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="PrimeCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FldRndSur" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FldInstrumentGauge" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FldDocPath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="LastPTValue1" Type="Double" />
+    <Property Name="LastPTValue2" Type="Double" />
+    <Property Name="FlickError1" Type="Double" />
+    <Property Name="FlickError2" Type="Double" />
+    <Property Name="GaugeRange" Type="Double" />
+  </EntityType>
+  <ComplexType Name="spStyliSearch_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="PartNo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TipType" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TipSize" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TipAngle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TipMaterial" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="StylusType" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ShankClearance" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="EffectiveLength" Nullable="true" MaxLength="255" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Delivery" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InstrumentType" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ShankLength" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="DataType" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="DisplayPrice" Nullable="true" MaxLength="255" />
+    <Property Type="Decimal" Name="PrimeCost" Nullable="true" Precision="19" />
+    <Property Type="String" Name="FldRndSur" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FldInstrumentGauge" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FldDocPath" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="LastPTValue1" Nullable="true" />
+    <Property Type="Double" Name="LastPTValue2" Nullable="true" />
+    <Property Type="Double" Name="FlickError1" Nullable="true" />
+    <Property Type="Double" Name="FlickError2" Nullable="true" />
+    <Property Type="Double" Name="GaugeRange" Nullable="true" />
+  </ComplexType>
+</Schema>

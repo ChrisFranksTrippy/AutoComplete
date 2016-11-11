@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChrisTempDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ChrisTempDBModelStoreContainer">
+          <EntitySet Name="StyliList" EntityType="ChrisTempDBModel.Store.StyliList" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="StyliList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PartNo" Type="varchar" MaxLength="255" />
+          <Property Name="TipType" Type="varchar" MaxLength="255" />
+          <Property Name="TipSize" Type="varchar" MaxLength="255" />
+          <Property Name="TipAngle" Type="varchar" MaxLength="255" />
+          <Property Name="TipMaterial" Type="varchar" MaxLength="255" />
+          <Property Name="StylusType" Type="varchar" MaxLength="255" />
+          <Property Name="ShankClearance" Type="varchar" MaxLength="255" />
+          <Property Name="EffectiveLength" Type="varchar" MaxLength="255" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Delivery" Type="varchar" MaxLength="255" />
+          <Property Name="Image" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="InstrumentType" Type="varchar" MaxLength="255" />
+          <Property Name="ShankLength" Type="varchar" MaxLength="255" />
+          <Property Name="DataType" Type="varchar" MaxLength="255" />
+          <Property Name="DisplayPrice" Type="varchar" MaxLength="255" />
+          <Property Name="PrimeCost" Type="money" />
+          <Property Name="FldRndSur" Type="varchar" MaxLength="50" />
+          <Property Name="FldInstrumentGauge" Type="varchar" MaxLength="50" />
+          <Property Name="FldDocPath" Type="varchar" MaxLength="255" />
+          <Property Name="LastPTValue1" Type="float" />
+          <Property Name="LastPTValue2" Type="float" />
+          <Property Name="FlickError1" Type="float" />
+          <Property Name="FlickError2" Type="float" />
+          <Property Name="GaugeRange" Type="float" />
+        </EntityType>
+        <Function Name="spStyliSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EffectiveLength" Type="varchar" Mode="In" />
+          <Parameter Name="FldRndSur" Type="varchar" Mode="In" />
+          <Parameter Name="InstrumentType" Type="varchar" Mode="In" />
+          <Parameter Name="PartNo" Type="varchar" Mode="In" />
+          <Parameter Name="ShankClearance" Type="varchar" Mode="In" />
+          <Parameter Name="ShankLength" Type="varchar" Mode="In" />
+          <Parameter Name="StylusType" Type="varchar" Mode="In" />
+          <Parameter Name="TipAngle" Type="varchar" Mode="In" />
+          <Parameter Name="TipMaterial" Type="varchar" Mode="In" />
+          <Parameter Name="TipSize" Type="varchar" Mode="In" />
+          <Parameter Name="TipType" Type="varchar" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChrisTempDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StyliConnection" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="StyliLists" EntityType="ChrisTempDBModel.StyliList" />
+          <FunctionImport Name="spStyliSearch" ReturnType="Collection(ChrisTempDBModel.spStyliSearch_Result)">
+            <Parameter Name="EffectiveLength" Mode="In" Type="String" />
+            <Parameter Name="FldRndSur" Mode="In" Type="String" />
+            <Parameter Name="InstrumentType" Mode="In" Type="String" />
+            <Parameter Name="PartNo" Mode="In" Type="String" />
+            <Parameter Name="ShankClearance" Mode="In" Type="String" />
+            <Parameter Name="ShankLength" Mode="In" Type="String" />
+            <Parameter Name="StylusType" Mode="In" Type="String" />
+            <Parameter Name="TipAngle" Mode="In" Type="String" />
+            <Parameter Name="TipMaterial" Mode="In" Type="String" />
+            <Parameter Name="TipSize" Mode="In" Type="String" />
+            <Parameter Name="TipType" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="StyliList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PartNo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TipType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TipSize" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TipAngle" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TipMaterial" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="StylusType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ShankClearance" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="EffectiveLength" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Delivery" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="InstrumentType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ShankLength" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DataType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayPrice" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="PrimeCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FldRndSur" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FldInstrumentGauge" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FldDocPath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="LastPTValue1" Type="Double" />
+          <Property Name="LastPTValue2" Type="Double" />
+          <Property Name="FlickError1" Type="Double" />
+          <Property Name="FlickError2" Type="Double" />
+          <Property Name="GaugeRange" Type="Double" />
+        </EntityType>
+        <ComplexType Name="spStyliSearch_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="PartNo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="TipType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="TipSize" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="TipAngle" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="TipMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="StylusType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ShankClearance" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="EffectiveLength" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Delivery" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="InstrumentType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ShankLength" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DataType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DisplayPrice" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="PrimeCost" Nullable="true" Precision="19" />
+          <Property Type="String" Name="FldRndSur" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FldInstrumentGauge" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FldDocPath" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="LastPTValue1" Nullable="true" />
+          <Property Type="Double" Name="LastPTValue2" Nullable="true" />
+          <Property Type="Double" Name="FlickError1" Nullable="true" />
+          <Property Type="Double" Name="FlickError2" Nullable="true" />
+          <Property Type="Double" Name="GaugeRange" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChrisTempDBModelStoreContainer" CdmEntityContainer="StyliConnection">
+          <EntitySetMapping Name="StyliLists">
+            <EntityTypeMapping TypeName="ChrisTempDBModel.StyliList">
+              <MappingFragment StoreEntitySet="StyliList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+                <ScalarProperty Name="TipType" ColumnName="TipType" />
+                <ScalarProperty Name="TipSize" ColumnName="TipSize" />
+                <ScalarProperty Name="TipAngle" ColumnName="TipAngle" />
+                <ScalarProperty Name="TipMaterial" ColumnName="TipMaterial" />
+                <ScalarProperty Name="StylusType" ColumnName="StylusType" />
+                <ScalarProperty Name="ShankClearance" ColumnName="ShankClearance" />
+                <ScalarProperty Name="EffectiveLength" ColumnName="EffectiveLength" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+                <ScalarProperty Name="ShankLength" ColumnName="ShankLength" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="DisplayPrice" ColumnName="DisplayPrice" />
+                <ScalarProperty Name="PrimeCost" ColumnName="PrimeCost" />
+                <ScalarProperty Name="FldRndSur" ColumnName="FldRndSur" />
+                <ScalarProperty Name="FldInstrumentGauge" ColumnName="FldInstrumentGauge" />
+                <ScalarProperty Name="FldDocPath" ColumnName="FldDocPath" />
+                <ScalarProperty Name="LastPTValue1" ColumnName="LastPTValue1" />
+                <ScalarProperty Name="LastPTValue2" ColumnName="LastPTValue2" />
+                <ScalarProperty Name="FlickError1" ColumnName="FlickError1" />
+                <ScalarProperty Name="FlickError2" ColumnName="FlickError2" />
+                <ScalarProperty Name="GaugeRange" ColumnName="GaugeRange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spStyliSearch" FunctionName="ChrisTempDBModel.Store.spStyliSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChrisTempDBModel.spStyliSearch_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+                <ScalarProperty Name="TipType" ColumnName="TipType" />
+                <ScalarProperty Name="TipSize" ColumnName="TipSize" />
+                <ScalarProperty Name="TipAngle" ColumnName="TipAngle" />
+                <ScalarProperty Name="TipMaterial" ColumnName="TipMaterial" />
+                <ScalarProperty Name="StylusType" ColumnName="StylusType" />
+                <ScalarProperty Name="ShankClearance" ColumnName="ShankClearance" />
+                <ScalarProperty Name="EffectiveLength" ColumnName="EffectiveLength" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+                <ScalarProperty Name="ShankLength" ColumnName="ShankLength" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="DisplayPrice" ColumnName="DisplayPrice" />
+                <ScalarProperty Name="PrimeCost" ColumnName="PrimeCost" />
+                <ScalarProperty Name="FldRndSur" ColumnName="FldRndSur" />
+                <ScalarProperty Name="FldInstrumentGauge" ColumnName="FldInstrumentGauge" />
+                <ScalarProperty Name="FldDocPath" ColumnName="FldDocPath" />
+                <ScalarProperty Name="LastPTValue1" ColumnName="LastPTValue1" />
+                <ScalarProperty Name="LastPTValue2" ColumnName="LastPTValue2" />
+                <ScalarProperty Name="FlickError1" ColumnName="FlickError1" />
+                <ScalarProperty Name="FlickError2" ColumnName="FlickError2" />
+                <ScalarProperty Name="GaugeRange" ColumnName="GaugeRange" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

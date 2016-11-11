@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChrisTempDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ChrisTempDBModelStoreContainer">
+    <EntitySet Name="StyliList" EntityType="ChrisTempDBModel.Store.StyliList" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="StyliList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PartNo" Type="varchar" MaxLength="255" />
+    <Property Name="TipType" Type="varchar" MaxLength="255" />
+    <Property Name="TipSize" Type="varchar" MaxLength="255" />
+    <Property Name="TipAngle" Type="varchar" MaxLength="255" />
+    <Property Name="TipMaterial" Type="varchar" MaxLength="255" />
+    <Property Name="StylusType" Type="varchar" MaxLength="255" />
+    <Property Name="ShankClearance" Type="varchar" MaxLength="255" />
+    <Property Name="EffectiveLength" Type="varchar" MaxLength="255" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Delivery" Type="varchar" MaxLength="255" />
+    <Property Name="Image" Type="varchar" MaxLength="255" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="InstrumentType" Type="varchar" MaxLength="255" />
+    <Property Name="ShankLength" Type="varchar" MaxLength="255" />
+    <Property Name="DataType" Type="varchar" MaxLength="255" />
+    <Property Name="DisplayPrice" Type="varchar" MaxLength="255" />
+    <Property Name="PrimeCost" Type="money" />
+    <Property Name="FldRndSur" Type="varchar" MaxLength="50" />
+    <Property Name="FldInstrumentGauge" Type="varchar" MaxLength="50" />
+    <Property Name="FldDocPath" Type="varchar" MaxLength="255" />
+    <Property Name="LastPTValue1" Type="float" />
+    <Property Name="LastPTValue2" Type="float" />
+    <Property Name="FlickError1" Type="float" />
+    <Property Name="FlickError2" Type="float" />
+    <Property Name="GaugeRange" Type="float" />
+  </EntityType>
+  <Function Name="spStyliSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EffectiveLength" Type="varchar" Mode="In" />
+    <Parameter Name="FldRndSur" Type="varchar" Mode="In" />
+    <Parameter Name="InstrumentType" Type="varchar" Mode="In" />
+    <Parameter Name="PartNo" Type="varchar" Mode="In" />
+    <Parameter Name="ShankClearance" Type="varchar" Mode="In" />
+    <Parameter Name="ShankLength" Type="varchar" Mode="In" />
+    <Parameter Name="StylusType" Type="varchar" Mode="In" />
+    <Parameter Name="TipAngle" Type="varchar" Mode="In" />
+    <Parameter Name="TipMaterial" Type="varchar" Mode="In" />
+    <Parameter Name="TipSize" Type="varchar" Mode="In" />
+    <Parameter Name="TipType" Type="varchar" Mode="In" />
+  </Function>
+</Schema>

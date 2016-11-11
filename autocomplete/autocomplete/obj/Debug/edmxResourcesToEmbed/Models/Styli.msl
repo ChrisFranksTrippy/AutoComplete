@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChrisTempDBModelStoreContainer" CdmEntityContainer="StyliConnection">
+    <EntitySetMapping Name="StyliLists">
+      <EntityTypeMapping TypeName="ChrisTempDBModel.StyliList">
+        <MappingFragment StoreEntitySet="StyliList">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="TipType" ColumnName="TipType" />
+          <ScalarProperty Name="TipSize" ColumnName="TipSize" />
+          <ScalarProperty Name="TipAngle" ColumnName="TipAngle" />
+          <ScalarProperty Name="TipMaterial" ColumnName="TipMaterial" />
+          <ScalarProperty Name="StylusType" ColumnName="StylusType" />
+          <ScalarProperty Name="ShankClearance" ColumnName="ShankClearance" />
+          <ScalarProperty Name="EffectiveLength" ColumnName="EffectiveLength" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+          <ScalarProperty Name="ShankLength" ColumnName="ShankLength" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="DisplayPrice" ColumnName="DisplayPrice" />
+          <ScalarProperty Name="PrimeCost" ColumnName="PrimeCost" />
+          <ScalarProperty Name="FldRndSur" ColumnName="FldRndSur" />
+          <ScalarProperty Name="FldInstrumentGauge" ColumnName="FldInstrumentGauge" />
+          <ScalarProperty Name="FldDocPath" ColumnName="FldDocPath" />
+          <ScalarProperty Name="LastPTValue1" ColumnName="LastPTValue1" />
+          <ScalarProperty Name="LastPTValue2" ColumnName="LastPTValue2" />
+          <ScalarProperty Name="FlickError1" ColumnName="FlickError1" />
+          <ScalarProperty Name="FlickError2" ColumnName="FlickError2" />
+          <ScalarProperty Name="GaugeRange" ColumnName="GaugeRange" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spStyliSearch" FunctionName="ChrisTempDBModel.Store.spStyliSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChrisTempDBModel.spStyliSearch_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="TipType" ColumnName="TipType" />
+          <ScalarProperty Name="TipSize" ColumnName="TipSize" />
+          <ScalarProperty Name="TipAngle" ColumnName="TipAngle" />
+          <ScalarProperty Name="TipMaterial" ColumnName="TipMaterial" />
+          <ScalarProperty Name="StylusType" ColumnName="StylusType" />
+          <ScalarProperty Name="ShankClearance" ColumnName="ShankClearance" />
+          <ScalarProperty Name="EffectiveLength" ColumnName="EffectiveLength" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+          <ScalarProperty Name="ShankLength" ColumnName="ShankLength" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="DisplayPrice" ColumnName="DisplayPrice" />
+          <ScalarProperty Name="PrimeCost" ColumnName="PrimeCost" />
+          <ScalarProperty Name="FldRndSur" ColumnName="FldRndSur" />
+          <ScalarProperty Name="FldInstrumentGauge" ColumnName="FldInstrumentGauge" />
+          <ScalarProperty Name="FldDocPath" ColumnName="FldDocPath" />
+          <ScalarProperty Name="LastPTValue1" ColumnName="LastPTValue1" />
+          <ScalarProperty Name="LastPTValue2" ColumnName="LastPTValue2" />
+          <ScalarProperty Name="FlickError1" ColumnName="FlickError1" />
+          <ScalarProperty Name="FlickError2" ColumnName="FlickError2" />
+          <ScalarProperty Name="GaugeRange" ColumnName="GaugeRange" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

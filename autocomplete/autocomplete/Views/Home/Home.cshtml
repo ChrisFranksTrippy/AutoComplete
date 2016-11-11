@@ -1,0 +1,246 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<script>
+
+    $(function () {
+        //Add Auto Complete to first text box once DOM has loaded
+        autoComplete($('.filter .input input'));
+        
+
+
+        $('.button').bind('click', function () {
+            $(this).toggleClass('no-bottom-radius');
+            $(this).children('ul').toggleClass('show');
+        });
+
+
+        $('.button-container div a').bind('click', function () {
+            $(this).toggleClass('pressed');
+            setTimeout(function () {
+                $('.button-container div a').removeClass('pressed');
+            }, 200);
+        });
+
+        $('.button ul li').bind('click', function () {
+            changeButtonText($(this));
+        });
+
+        $('.button-container div:nth-child(1) a').bind('click', function () {
+            addFilter();
+        });
+
+        $('.button-container div:nth-child(2) a').bind('click', function () {
+            removeFilter();
+        });
+
+        $('.button-container div:nth-child(3) a').bind('click', function () {
+            resetFilter();
+        });
+
+    })
+
+    function changeButtonText(selectedLi) {
+        var anchorTag = selectedLi.parent().siblings('a');
+        var inputTag = selectedLi.parents('.button').siblings('.input').children('input');
+        var prevAText = anchorTag.text();
+
+        //Replace text
+        anchorTag.text(selectedLi.text());
+        selectedLi.text(prevAText);
+        //Change input Id
+        inputTag.attr('id', anchorTag.text().trim().replace(" ", ""));
+        //Remove younger siblings       
+        removeUntil($(selectedLi).parents('.filter:last').attr('id'));
+        //Check Place Holder text
+        changePlaceHolder(inputTag);
+    }
+
+    function changePlaceHolder(input) {
+        if ($(input).attr('id') == 'PartNo')
+            $(input).attr('placeholder', "Enter '112/...' for a standard or '155/P...' for a special");
+        else
+            $(input).attr('placeholder', "Enter a Value");
+    }
+
+    function valueChanged(input) {
+        if ($(input).attr('id') != $('filter:last .input input').attr('id')) {
+            removeUntil($(input).parents('.filter').attr('id'));
+        }
+    }
+
+
+
+
+
+
+
+    function addFilter() {
+        if ($('.filter-container').children().length < 11) {
+
+            $.ajax({
+                url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value=" + $('.filter:last .input input').val()
+            });
+
+
+        var newFilter = $('.filter:last').clone(true);
+        $('.filter-container').append(newFilter);
+            //Store first li text
+        var buttonText = $('.filter:last li:first').text();
+            //Remove top li
+        $('.filter:last li:first').remove();
+            //Change anchorTag text 
+        $('.filter:last .button a').text(buttonText);
+
+            //FIX auto complete error Woo!
+
+            //Remove CLONED 
+        $('.filter:last .input input').remove();
+            //Create new input element 
+        var input = document.createElement('input');
+            //Append new input to create memory space for the input 
+        $('.filter:last .input').append(input);
+
+        var lastInput = $('.filter:last .input input')
+            //Change input Id
+        $(lastInput).attr('id', buttonText.trim().replace(" ", ""));
+            //Add placeholder       
+        changePlaceHolder(lastInput);
+            //Change filter id
+        $('.filter:last').attr('id', 'filter' + $('.filter-container').children().length);
+
+        autoComplete($(lastInput));
+
+    }
+}
+
+function removeFilter() {
+    if ($('.filter-container').children().length > 1) {
+        $.ajax({
+            url: "@Url.Action("setSessionVar", "Home")" + "?key=" + $('.filter:last .input input').attr('id') + "&value=null"
+        });
+    $('.filter:last').remove();
+}
+}
+
+function removeUntil(currentFilterId) {
+    while (currentFilterId != $('.filter:last').attr('id')) {
+        removeFilter();
+    }
+}
+
+function resetFilter() {
+    $.ajax({
+        url: "@Url.Action("setSessionVarsNull", "Home")"
+    });
+    while ($('.filter-container').children().length > 1) {
+        $('.filter:last').remove();
+    }
+}
+
+function autoComplete(input) {
+
+    var sourceStr = "@Url.Action("autoComplete", "Home")" + "?filter=" + input.attr('id');
+
+        $(input).autocomplete({
+            source: sourceStr,
+            open: function (event, ui) {
+                $(this).addClass('no-bottom-radius');
+            },
+            close: function (event, ui) {
+                $(this).removeClass('no-bottom-radius');
+            }
+        });
+
+        if (input.attr('id') == 'PartNo') {
+            $(input).autocomplete("option", "minLength", 7);
+        }
+    }
+
+    //setInterval(function () { location.reload(); }, 1000);
+
+
+
+
+</script>
+
+<div class="container">
+    <div class="filter-container">
+        <div id="filter1" class="filter">
+            <div class="button">
+                <a>Effective Length</a>
+                <img src="~/Img/Icon/down.svg" />
+                <ul>
+                    <li>Fld RndSur</li>
+                    <li>Instrument Type</li>
+                    <li>Part No</li>
+                    <li>Shank Clearance</li>
+                    <li>Shank Length</li>
+                    <li>Stylus Type</li>
+                    <li>Tip Angle</li>
+                    <li>Tip Material</li>
+                    <li>Tip Size</li>
+                    <li>Tip Type</li>
+                </ul>
+            </div>
+            <div class="input">
+                <input id="EffectiveLength" placeholder="Enter a Value" />
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <div>
+            <a>Add
+            </a>
+        </div>
+        <div>
+            <a>Remove
+            </a>
+        </div>
+        <div>
+            <a>Reset
+            </a>
+        </div>
+        <div>
+            <a>Search
+            </a>
+        </div>
+    </div>
+</div>
+
+
+@*
+
+        <div class="filter">
+            <div class="button">
+                <a>Part No</a>
+                <img src="~/Img/Icon/down.svg" />
+                <ul>
+                    <li>Fld RndSur</li>
+                    <li>Instrument Type</li>
+                    <li>Part No</li>
+                    <li>Shank Clearance</li>
+                    <li>Shank Length</li>
+                    <li>Stylus Type</li>
+                    <li>Tip Angle</li>
+                    <li>Tip Material</li>
+                    <li>Tip Size</li>
+                    <li>Tip Type</li>
+                </ul>
+            </div>
+            <div class="input">
+                <input placeholder="Enter a Value" />
+                <ul>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                </ul>
+            </div>
+        </div>
+
+*@
